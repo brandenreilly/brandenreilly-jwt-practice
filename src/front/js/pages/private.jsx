@@ -32,10 +32,8 @@ export const PrivatePage = () => {
                 <h1>Hello, {testVar}!</h1>
                 <p>You are currently logged in as {testVar}</p>
                 <p>with token: {token}</p>
-                <button className='btn btn-primary' onClick={()=>{console.log(testVar)}}></button>
               </div>
             }
-
         </div>
 
 
