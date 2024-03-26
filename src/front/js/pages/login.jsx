@@ -19,7 +19,9 @@ export const LoginPage = () => {
             {store.token && store.token != "" && store.token != undefined ? "You are logged in with this token: " +store.token : 
             <div className='text-center mt-5'>
                 <input type='text' placeholder='user' value={username} onChange={(e)=>{setUsername(e.target.value)}} />
+                <br/>
                 <input type='password' placeholder='password' value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
+                <br/>
                 <button className='btn btn-primary' onClick={()=>{handleLogin()}}>Login</button>
                 <br/>
                 <a className='mt-5' onClick={()=>{navigate('/signup')}} style={{ cursor: 'pointer' }}>New User? Click here to signup</a>

@@ -6,6 +6,7 @@ export const PrivatePage = () => {
     const { store, actions } = useContext(Context)
     const [testVar, setTestVar] = useState()
     const navigate = useNavigate()
+    const token = sessionStorage.getItem('token')
     useEffect(()=>{
         handleGET()
     },[])
@@ -28,10 +29,11 @@ export const PrivatePage = () => {
                 <p>You must log in to view this page.</p>
               </div>
             : <div className='text-center'>
+                <h1>Hello, {testVar}!</h1>
                 <p>You are currently logged in as {testVar}</p>
+                <p>with token: {token}</p>
                 <button className='btn btn-primary' onClick={()=>{console.log(testVar)}}></button>
               </div>
-
             }
 
         </div>

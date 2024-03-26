@@ -23,7 +23,6 @@ export const Home = () => {
 					Read documentation
 				</a>
 			</p>
-			<button className="btn btn-primary" onClick={()=>{navigate('/private')}}>Click me</button>
 		</div>
 	);
 };
