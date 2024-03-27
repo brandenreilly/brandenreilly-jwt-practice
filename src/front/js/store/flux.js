@@ -14,7 +14,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			token: null
+			token: null,
+			alert: false,
+			confirmed: false,
+			testVar: "",
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -25,6 +28,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 			syncToken: () => {
 				const token = sessionStorage.getItem('token')
 				if(token && token != "" && token != undefined) setStore({ token: token })
+			},
+
+			verifyPass: (password1,password2) => {
+				if(password1 === password2){
+					setStore({ confirmed: true })
+					return true
+				}	
+				else{
+					return false
+				}
+			},
+			handleGET: (token) => {
+				const opts = {
+					method: 'GET',
+					headers: {
+						'Authorization': 'Bearer '+ token
+					}
+				}
+				fetch("https://opulent-journey-q7759797qq9vcrxv-3001.app.github.dev/api/private", opts)
+				.then(resp => resp.json())
+				.then(data => setStore({testVar: data}))
 			},
 
 			login: async (username , password) => {
@@ -41,13 +65,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			
 			try{
 				const resp = await fetch("https://opulent-journey-q7759797qq9vcrxv-3001.app.github.dev/api/token", opts)
-				if (resp.status !== 200){
+				if (resp.status != 200){
+					if(resp.status == 401){
+						setStore({alert: true})
+						return false
+					}
 					console.log("Error")
 					return false;
 				}
 				const data = await resp.json();
 				sessionStorage.setItem("token", data.access_token)
-				setStore({ token: data.access_token })
+				setStore({ token: data.access_token , alert: false })
 				return true
 				}
 			catch(error){

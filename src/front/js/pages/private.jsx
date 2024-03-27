@@ -1,37 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Context } from '../store/appContext';
 import { useNavigate } from 'react-router-dom';
+import mikePhoto from '../../img/m101.jpg'
 
 export const PrivatePage = () => {
     const { store, actions } = useContext(Context)
     const [testVar, setTestVar] = useState()
     const navigate = useNavigate()
     const token = sessionStorage.getItem('token')
+
     useEffect(()=>{
-        handleGET()
+        actions.handleGET(token)
     },[])
 
-    const handleGET = () => {
-		const opts = {
-			method: 'GET',
-			headers: {
-				'Authorization': 'Bearer '+store.token
-			}
-		}
-		fetch("https://opulent-journey-q7759797qq9vcrxv-3001.app.github.dev/api/private", opts)
-		.then(resp => resp.json())
-		.then(data => setTestVar(data))
-	}
     return(
         <div className='container'>
             {!store.token 
             ? <div className='text-center'>
                 <p>You must log in to view this page.</p>
               </div>
-            : <div className='text-center'>
-                <h1>Hello, {testVar}!</h1>
-                <p>You are currently logged in as {testVar}</p>
-                <p>with token: {token}</p>
+            : <div className='text-center' style={{ textWrap: 'wrap' }}>
+                <h1>Hello, {store.testVar}!</h1>
+                <img src={mikePhoto}></img>
+                <p>You are currently logged in as {store.testVar}</p>
+                <p style={{width: '80vw', textWrap: 'wrap' , wordWrap: 'break-word'}}>with token: {store.token}</p>
               </div>
             }
         </div>

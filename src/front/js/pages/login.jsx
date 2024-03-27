@@ -9,22 +9,35 @@ export const LoginPage = () => {
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
     const handleLogin = async () => {
-        actions.login(username, password).then((bool)=>{
-            if(bool == true)navigate('/private')
+        actions.login(username, password).then((resp)=>{
+            if(resp == true)navigate('/private')
         })
     }
 
+    const handleAlert = () => {
+        
+    }
+
     return (
-        <div className='container'>
+        <div className='loginPage d-flex justify-content-center align-items-center'>
             {store.token && store.token != "" && store.token != undefined ? "You are logged in with this token: " +store.token : 
-            <div className='text-center mt-5'>
-                <input type='text' placeholder='user' value={username} onChange={(e)=>{setUsername(e.target.value)}} />
-                <br/>
-                <input type='password' placeholder='password' value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
-                <br/>
-                <button className='btn btn-primary' onClick={()=>{handleLogin()}}>Login</button>
-                <br/>
-                <a className='mt-5' onClick={()=>{navigate('/signup')}} style={{ cursor: 'pointer' }}>New User? Click here to signup</a>
+            <div className='borderDiv text-center mt-5'>
+                <h1>Log In</h1>
+                <div className='loginInputs mt-4'>
+                    <label htmlFor='userLogin' className='mx-1'><i class="fas fa-user"></i></label>
+                    <input type='text' id='userLogin' placeholder='Username' value={username} onChange={(e)=>{setUsername(e.target.value)}} />
+                </div>
+                <div className='mt-4 loginInputs'>
+                    <label htmlFor='passLogin' className='mx-1'><i class="fas fa-lock"></i></label>
+                    <input type='password' id='passLogin' placeholder='Password' value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
+                </div>
+                {store.alert ? <div className='alert alert-danger alertStyle mt-3'>Incorrect username or password.</div>:<div></div>}
+                <div className='mt-3'>
+                    <button className='btn btn-dark' style={{ fontSize: "20px" }} onClick={()=>{handleLogin()}}>Login</button>
+                </div>
+                <div className='mt-3'>
+                    <a className='signupLink' href='/signup' style={{ cursor: 'pointer' }}>New User? Click here to signup</a>
+                </div>
             </div>
             }
         </div>

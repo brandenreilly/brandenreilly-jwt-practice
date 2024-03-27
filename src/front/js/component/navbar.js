@@ -10,13 +10,16 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
-				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+				<div>
+					{!store.token ? <span className="navbar-brand mb-0 h1 disabled" style={{color: 'gray'}}>Profile</span>:<Link style={{textDecoration: 'none'}} to='/private'><span className="navbar-brand mb-0 h1 profileLink">Profile</span></Link>}
+				</div>
+				<Link to='/' style={{textDecoration: 'none', color: 'black'}} >
+					<h1 className="homeBrand">Home</h1>
 				</Link>
 				<div className="ml-auto">
 					{!store.token 
-					? <button className="btn btn-primary" onClick={()=>{navigate('/login')}}>Log In</button>
-					: <button className="btn btn-primary" onClick={()=>{actions.logout();navigate('/')}}>Log Out</button>} 
+					? <button className="btn btn-success" onClick={()=>{navigate('/login')}}>Log In</button>
+					: <button className="btn btn-danger" onClick={()=>{actions.logout();navigate('/')}}>Log Out</button>} 
 				</div>
 			</div>
 		</nav>

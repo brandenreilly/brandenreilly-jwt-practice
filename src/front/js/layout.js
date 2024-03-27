@@ -8,6 +8,7 @@ import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import { LoginPage } from "./pages/login.jsx";
 import { PrivatePage } from "./pages/private.jsx";
+import { ChangePass } from "./pages/changePass.jsx";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -28,6 +29,7 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
+                        <Route element={<ChangePass />} path="/profile/update"/>
                         <Route element={<SignupPage />} path="/signup" />
                         <Route element={<LoginPage />} path="/login"/>
                         <Route element={<PrivatePage />} path="/private"/>

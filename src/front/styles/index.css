@@ -1,3 +1,31 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+.loginPage {
+    height: 80vh;
+}
+.loginInputs {
+    font-size: larger;
+}
+.borderDiv {
+    padding: 120px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+.signupLink:hover {
+    text-decoration: underline;
+}
+.signupLink {
+    text-decoration: none;
+    color: black;
+}
+.alertStyle {
+    width: 300px;
+}
+.homeBrand:hover {
+    text-decoration: underline;
+    color: blue;
+}
+.profileLink:hover {
+    text-decoration: underline;
+}

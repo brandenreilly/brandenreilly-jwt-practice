@@ -28,15 +28,21 @@ export const SignupPage = () => {
     }
 
     return(
-        <div className='container'>
-            {loginAlert == true
-            ? <div className='alert alert-success'><p>Please proceed to login.</p></div>
-            : 
-            <div className='text-center'>
-                <input type='text' id='signupUser' placeholder='user' value={username} onChange={(e)=>{setUsername(e.target.value)}} ></input>
-                <input type='password' id='signupPass' placeholder='password' value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
-                <br/>
-                <button className='btn btn-primary' onClick={()=>{handleCreateUser()}}>Sign Up</button>
+        <div className='loginPage d-flex justify-content-center align-items-center'>
+            {loginAlert == true?<div className='alert alert-success'>Please proceed to login.</div>: 
+            <div className='borderDiv text-center mt-5'>
+                <h1>Create Account</h1>
+                <div className='loginInputs mt-4'>
+                    <label htmlFor='signupUser' className='mx-1'><i class="fas fa-user"></i></label>
+                    <input type='text' id='signupUser' placeholder='Username' value={username} onChange={(e)=>{setUsername(e.target.value)}} ></input>
+                </div>
+                <div className='mt-4 loginInputs'>
+                    <label htmlFor='signupPass' className='mx-1'><i class="fas fa-lock"></i></label>
+                    <input type='password' id='signupPass' placeholder='Password' value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
+                </div>
+                <div className='mt-3'>
+                    <button className='btn btn-dark' onClick={()=>{handleCreateUser()}}>Sign Up</button>
+                </div>
             </div>
             }
         </div>
